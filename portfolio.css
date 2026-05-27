@@ -1,0 +1,271 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #eeebe6;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  color: #1a1410;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  background: #f7f4f0;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 120px;
+}
+
+/* ─── Header ─── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 16px;
+  position: sticky;
+  top: 0;
+  background: #f7f4f0;
+  z-index: 10;
+  border-bottom: 1px solid #e8e2da;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.05);
+  color: #1a1410;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.back-btn:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+.back-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.header-title {
+  font-family: 'Schoolbell', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: #1a1410;
+}
+
+.header-placeholder {
+  width: 36px;
+}
+
+/* ─── Grid ─── */
+.grid {
+  column-count: 2;
+  column-gap: 8px;
+  padding: 16px 16px 0;
+}
+
+.grid-item {
+  break-inside: avoid;
+  margin-bottom: 8px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #e8e2da;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.grid-item:hover img {
+  transform: scale(1.04);
+}
+
+/* 높이 패턴 — 3사이클로 불규칙한 Pinterest 느낌 */
+.grid-item:nth-child(3n+1) { aspect-ratio: 3 / 4; }
+.grid-item:nth-child(3n+2) { aspect-ratio: 2 / 3; }
+.grid-item:nth-child(3n)   { aspect-ratio: 4 / 5; }
+
+/* ─── Empty state ─── */
+.empty-state {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 80px 24px;
+}
+
+.empty-title {
+  font-size: 15px;
+  font-weight: 400;
+  color: #6a5a4a;
+  letter-spacing: 0.04em;
+}
+
+.empty-sub {
+  font-size: 12px;
+  font-weight: 300;
+  color: #b0a090;
+  letter-spacing: 0.06em;
+}
+
+/* ─── CTA ─── */
+.cta-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 420px;
+  padding: 16px 20px 32px;
+  background: linear-gradient(to top, #f7f4f0 60%, transparent);
+}
+
+.cta-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: #1a1410;
+  color: #f5ede0;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  border-radius: 14px;
+  transition: opacity 0.2s ease;
+}
+
+.cta-btn:hover {
+  opacity: 0.85;
+}
+
+/* ─── Lightbox ─── */
+.lb-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 6, 0.92);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+
+.lb-overlay.active {
+  display: flex;
+}
+
+.lb-img-wrap {
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.lb-img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
+  will-change: transform, opacity;
+}
+
+.lb-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 101;
+}
+
+.lb-close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.lb-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 101;
+}
+
+.lb-nav svg {
+  width: 12px;
+  height: 20px;
+}
+
+.lb-prev { left: 16px; }
+.lb-next { right: 16px; }
+
+.lb-counter {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.08em;
+}
+
+/* ─── Desktop ─── */
+@media (min-width: 421px) {
+  body {
+    padding: 40px 0;
+  }
+
+  .container {
+    min-height: auto;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  }
+
+  .cta-wrap {
+    border-radius: 0 0 24px 24px;
+  }
+}

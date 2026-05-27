@@ -1,0 +1,232 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #eeebe6;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  color: #1a1410;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  background: #f7f4f0;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px;
+}
+
+/* ─── Header ─── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 16px;
+  position: sticky;
+  top: 0;
+  background: #f7f4f0;
+  z-index: 10;
+  border-bottom: 1px solid #e8e2da;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.05);
+  color: #1a1410;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.back-btn:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+.back-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.header-title {
+  font-family: 'Schoolbell', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: #1a1410;
+}
+
+.header-placeholder {
+  width: 36px;
+}
+
+/* ─── Intro ─── */
+.intro {
+  padding: 32px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.intro-title {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #1a1410;
+}
+
+.intro-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: #8a7a6a;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Form ─── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: #5a4a3a;
+  letter-spacing: 0.04em;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid #e0d8ce;
+  border-radius: 12px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #1a1410;
+  letter-spacing: 0.02em;
+  outline: none;
+  transition: border-color 0.2s ease;
+  -webkit-appearance: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #c0b0a0;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #a08878;
+}
+
+.form-textarea {
+  min-height: 140px;
+  resize: none;
+  line-height: 1.6;
+}
+
+.submit-btn {
+  margin-top: 8px;
+  width: 100%;
+  padding: 16px;
+  background: #1a1410;
+  color: #f5ede0;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.submit-btn:hover {
+  opacity: 0.85;
+}
+
+/* ─── Thanks ─── */
+.thanks-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.thanks-icon svg {
+  width: 64px;
+  height: 64px;
+}
+
+.thanks-title {
+  font-size: 18px;
+  font-weight: 400;
+  color: #1a1410;
+  letter-spacing: 0.04em;
+}
+
+.thanks-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: #8a7a6a;
+  line-height: 1.7;
+}
+
+.back-home-btn {
+  margin-top: 8px;
+  display: inline-block;
+  padding: 14px 32px;
+  background: #1a1410;
+  color: #f5ede0;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  border-radius: 12px;
+  transition: opacity 0.2s ease;
+}
+
+.back-home-btn:hover {
+  opacity: 0.85;
+}
+
+/* ─── Desktop ─── */
+@media (min-width: 421px) {
+  body {
+    padding: 40px 0;
+  }
+
+  .container {
+    min-height: auto;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  }
+}

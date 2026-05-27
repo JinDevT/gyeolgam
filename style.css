@@ -1,0 +1,309 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #eeebe6;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  color: #1a1410;
+}
+
+/* 모바일 카드 컨테이너 */
+.container {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  background: #f7f4f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 48px;
+}
+
+/* ─── Hero ─── */
+.hero {
+  width: 100%;
+  height: 280px;
+  background-image:
+    linear-gradient(180deg, rgba(10, 5, 2, 0.35) 0%, rgba(10, 5, 2, 0.62) 100%),
+    url('./images/hero.jpeg');
+  background-size: auto, cover;
+  background-position: 0 0, 90% 5%;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-eyebrow {
+  font-family: 'Schoolbell', cursive;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  color: rgba(245, 230, 200, 0.45);
+  position: relative;
+  z-index: 1;
+}
+
+.hero-logo {
+  font-family: 'Schoolbell', cursive;
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-indent: 0.18em;
+  color: #f5ede0;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Profile ─── */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 28px 32px 24px;
+  width: 100%;
+}
+
+/* Brand text block */
+.brand-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-top: 1px solid #e0d8ce;
+  border-bottom: 1px solid #e0d8ce;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.bt-grid {
+  display: inline-grid;
+  grid-template-columns: max-content max-content;
+  gap: 10px 14px;
+  align-items: baseline;
+}
+
+.bt-char {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: #1a1410;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.bt-char em {
+  font-style: normal;
+  font-family: 'Schoolbell', cursive;
+  font-size: 13px;
+  font-weight: 300;
+  color: #b0a090;
+  letter-spacing: 0.05em;
+}
+
+.bt-tags {
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: #9e8e7e;
+  line-height: 1.6;
+}
+
+.bt-divider {
+  width: 24px;
+  height: 1px;
+  background: #d0c0b0;
+  margin: 4px 0;
+}
+
+.bt-emphasis {
+  font-weight: 600;
+}
+
+.bt-tagline {
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: #1a1410;
+  line-height: 1.5;
+}
+
+.social-row {
+  display: flex;
+  gap: 8px;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.06);
+  color: #4a3c30;
+  transition: background 0.2s ease;
+}
+
+.social-icon:hover {
+  background: rgba(0,0,0,0.12);
+}
+
+.social-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ─── Banner image ─── */
+.banner-img-wrap {
+  width: calc(100% - 40px);
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  margin-bottom: 24px;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ─── Link cards ─── */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  text-decoration: none;
+  color: #1a1410;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.link-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.link-card:active {
+  transform: translateY(0);
+}
+
+.link-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.link-badge svg {
+  width: 22px;
+  height: 22px;
+}
+
+.portfolio-badge {
+  background: #ede5db;
+}
+
+.drawing-badge {
+  background: #dfe5de;
+}
+
+.kakao-badge {
+  background: #f5e9b0;
+}
+
+.instagram-badge {
+  background: linear-gradient(135deg, #F9A825 0%, #E91E8C 55%, #6A1BC0 100%);
+}
+
+.mail-badge {
+  background: #dde3ea;
+}
+
+.link-text {
+  flex: 1;
+  text-align: center;
+}
+
+/* badge 없는 버튼은 텍스트 완전 중앙 정렬 보정 */
+.link-card:not(.kakao):not(.instagram) .link-text {
+  margin-left: 0;
+}
+
+.link-chevron {
+  width: 8px;
+  height: 14px;
+  color: #c0b0a0;
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+}
+
+.link-card:hover .link-chevron {
+  transform: translateX(2px);
+  color: #8a7a6a;
+}
+
+/* ─── Footer ─── */
+footer {
+  margin-top: 40px;
+}
+
+footer p {
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: #c0b0a0;
+}
+
+/* ─── Desktop: 화면 중앙 고정 ─── */
+@media (min-width: 421px) {
+  body {
+    padding: 40px 0;
+  }
+
+  .container {
+    min-height: auto;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>비즈니스 제안 | 결감</title>
+
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+
+  <meta name="description" content="결감 비즈니스 제안">
+  <meta property="og:title" content="비즈니스 제안 | 결감">
+  <meta property="og:description" content="결감과의 협업, 제휴, 광고 제안을 환영합니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="DOMAIN_URL/business.html">
+  <meta property="og:image" content="DOMAIN_URL/images/og_image.jpeg">
+
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+  <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="business.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header class="header">
+      <a href="./index.html" class="back-btn" aria-label="뒤로가기">
+        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 1L3 7L9 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <h1 class="header-title">Business</h1>
+      <div class="header-placeholder"></div>
+    </header>
+
+    <!-- Intro -->
+    <div class="intro">
+      <p class="intro-title">비즈니스 제안</p>
+      <p class="intro-sub">협업, 제휴, 광고 등 다양한 제안을 환영합니다.<br>아래 양식을 작성해 주시면 검토 후 연락드리겠습니다.</p>
+    </div>
+
+    <!-- Form -->
+    <form class="form" id="business-form">
+      <input type="hidden" name="access_key" value="62fec8ad-4f3b-4105-aa01-fbf7dc4fc152">
+      <input type="hidden" name="subject" value="[결감] 비즈니스 제안이 도착했습니다">
+
+      <div class="form-group">
+        <label class="form-label" for="name">이름 *</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="홍길동" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="contact">연락처 *</label>
+        <input class="form-input" type="text" id="contact" name="contact" placeholder="010-0000-0000" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">이메일 *</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="example@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="company">소속 / 회사명</label>
+        <input class="form-input" type="text" id="company" name="company" placeholder="회사명 또는 소속 (선택)">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="message">제안 내용 *</label>
+        <textarea class="form-textarea" id="message" name="message" placeholder="제안하실 내용을 자유롭게 작성해 주세요." required></textarea>
+      </div>
+
+      <button class="submit-btn" type="submit" id="submit-btn">제안하기</button>
+    </form>
+
+    <!-- 제출 완료 화면 -->
+    <div class="thanks-wrap" id="thanks" style="display:none;">
+      <div class="thanks-icon">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="22" stroke="#c8b8a2" stroke-width="1.5"/>
+          <path d="M14 24L21 31L34 17" stroke="#8a7a6a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="thanks-title">제안이 전달되었습니다</p>
+      <p class="thanks-sub">소중한 제안 감사드립니다.<br>검토 후 빠르게 연락드리겠습니다.</p>
+      <a href="./index.html" class="back-home-btn">홈으로 돌아가기</a>
+    </div>
+
+  </div>
+
+  <script>
+    document.getElementById('business-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = '전송 중...';
+      btn.disabled = true;
+
+      const data = new FormData(this);
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data
+      });
+      const json = await res.json();
+
+      if (json.success) {
+        document.querySelector('.intro').style.display = 'none';
+        this.style.display = 'none';
+        document.getElementById('thanks').style.display = 'flex';
+      } else {
+        btn.textContent = '제안하기';
+        btn.disabled = false;
+        alert('전송에 실패했습니다. 다시 시도해 주세요.');
+      }
+    });
+  </script>
+</body>
+</html>

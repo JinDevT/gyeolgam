@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>포트폴리오 | 결감</title>
+
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+
+  <meta name="description" content="결감 눈썹 반영구 포트폴리오">
+  <meta property="og:title" content="포트폴리오 | 결감">
+  <meta property="og:description" content="결감 눈썹 반영구 작업물 포트폴리오">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="DOMAIN_URL/portfolio.html">
+  <meta property="og:image" content="DOMAIN_URL/images/og_image.jpeg">
+
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+  <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header class="header">
+      <a href="./index.html" class="back-btn" aria-label="뒤로가기">
+        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 1L3 7L9 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <h1 class="header-title">Gyeolgam</h1>
+      <div class="header-placeholder"></div>
+    </header>
+
+    <!-- Grid -->
+    <!-- 이미지 추가 방법: images/portfolio/ 폴더에 파일 넣고 아래 형식으로 추가
+    <div class="grid-item">
+      <img src="./images/portfolio/파일명.jpg" alt="결감 작업물">
+    </div>
+    -->
+    <div class="grid">
+      <div class="grid-item"><img src="./images/portfolio/portfolio_22.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_1.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_2.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_3.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_5.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_6.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_7.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_8.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_9.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_10.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_13.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_14.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_15.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_16.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_17.jpeg" alt="결감 작업물"></div>
+      <div class="grid-item"><img src="./images/portfolio/portfolio_21.jpeg" alt="결감 작업물"></div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-wrap">
+      <a href="http://pf.kakao.com/_gPMxjX" class="cta-btn" target="_blank" rel="noopener noreferrer">
+        시술 문의하기
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lb-overlay" id="lb">
+    <button class="lb-close" id="lb-close" aria-label="닫기">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="이전">
+      <svg viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 1L1 9L9 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="lb-img-wrap">
+      <img class="lb-img" id="lb-img" src="" alt="">
+    </div>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="다음">
+      <svg viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L9 9L1 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="lb-counter" id="lb-counter"></div>
+  </div>
+
+  <script>
+    const images = Array.from(document.querySelectorAll('.grid-item img'));
+    const lb = document.getElementById('lb');
+    const lbImg = document.getElementById('lb-img');
+    const lbCounter = document.getElementById('lb-counter');
+    let current = 0;
+    let touchStartX = 0;
+    let dragX = 0;
+    let isDragging = false;
+
+    function setImgStyle(transform, opacity, transition) {
+      lbImg.style.transition = transition || 'none';
+      lbImg.style.transform = transform || 'translateX(0)';
+      lbImg.style.opacity = opacity != null ? opacity : '1';
+    }
+
+    function updateCounter() {
+      lbCounter.textContent = (current + 1) + ' / ' + images.length;
+    }
+
+    function open(index) {
+      current = index;
+      lbImg.src = images[current].src;
+      setImgStyle('translateX(0)', 1);
+      updateCounter();
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      lb.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function navigate(direction, fromDrag = false) {
+      const inX = direction === 'next' ? '60px' : '-60px';
+      const outX = direction === 'next' ? '-60px' : '60px';
+      const easing = 'transform 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease';
+
+      if (fromDrag) {
+        current = direction === 'next'
+          ? (current + 1) % images.length
+          : (current - 1 + images.length) % images.length;
+        lbImg.src = images[current].src;
+        updateCounter();
+        setImgStyle(`translateX(${inX})`, 0);
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          setImgStyle('translateX(0)', 1, easing);
+        }));
+      } else {
+        setImgStyle(`translateX(${outX})`, 0, easing.replace('0.3s', '0.2s'));
+        setTimeout(() => {
+          current = direction === 'next'
+            ? (current + 1) % images.length
+            : (current - 1 + images.length) % images.length;
+          lbImg.src = images[current].src;
+          updateCounter();
+          setImgStyle(`translateX(${inX})`, 0);
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            setImgStyle('translateX(0)', 1, easing);
+          }));
+        }, 200);
+      }
+    }
+
+    images.forEach((img, i) => {
+      img.parentElement.addEventListener('click', () => open(i));
+    });
+
+    document.getElementById('lb-close').addEventListener('click', close);
+    document.getElementById('lb-prev').addEventListener('click', () => navigate('prev'));
+    document.getElementById('lb-next').addEventListener('click', () => navigate('next'));
+    lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+
+    /* ── 드래그 스와이프 ── */
+    lb.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      isDragging = true;
+      dragX = 0;
+      lbImg.style.transition = 'none';
+    }, { passive: true });
+
+    lb.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      dragX = e.touches[0].clientX - touchStartX;
+      lbImg.style.transform = `translateX(${dragX}px)`;
+      lbImg.style.opacity = String(Math.max(0.4, 1 - Math.abs(dragX) / 350));
+    }, { passive: true });
+
+    lb.addEventListener('touchend', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      const easing = 'transform 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.28s ease';
+
+      if (Math.abs(dragX) > 72) {
+        const direction = dragX < 0 ? 'next' : 'prev';
+        const finalX = dragX < 0 ? -window.innerWidth : window.innerWidth;
+        setImgStyle(`translateX(${finalX}px)`, 0, easing);
+        setTimeout(() => navigate(direction, true), 280);
+      } else {
+        setImgStyle('translateX(0)', 1, easing);
+      }
+      dragX = 0;
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('active')) return;
+      if (e.key === 'ArrowLeft') navigate('prev');
+      if (e.key === 'ArrowRight') navigate('next');
+      if (e.key === 'Escape') close();
+    });
+  </script>
+</body>
+</html>
